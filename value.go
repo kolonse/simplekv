@@ -2,6 +2,7 @@ package simplekv
 
 import (
 	"encoding/json"
+	"strconv"
 )
 
 type Value struct {
@@ -10,6 +11,14 @@ type Value struct {
 
 func (v Value) ToString() string {
 	return string(v.V)
+}
+
+func (v Value) ToInt() int {
+	r, err := strconv.Atoi(string(v.V))
+	if err != nil {
+		return 0
+	}
+	return r
 }
 
 func (v Value) ToJsonArray() []interface{} {
